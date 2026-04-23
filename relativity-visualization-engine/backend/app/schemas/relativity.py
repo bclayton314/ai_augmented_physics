@@ -22,6 +22,23 @@ class TimeDilationResponse(BaseModel):
     dilated_time: float
 
 
+class LengthContractionRequest(BaseModel):
+    beta: float = Field(..., ge=0.0, lt=1.0, description="Velocity as a fraction of c")
+    proper_length: float = Field(..., ge=0.0, description="Proper length in the object's rest frame")
+
+
+class LengthContractionResponse(BaseModel):
+    beta: float
+    gamma: float
+    proper_length: float
+    contracted_length: float
+
+
 class GammaCurvePoint(BaseModel):
     beta: float
     gamma: float
+
+
+class LengthCurvePoint(BaseModel):
+    beta: float
+    length: float
